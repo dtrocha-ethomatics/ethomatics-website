@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Ethomatics.AI — Homepage
 
-## Getting Started
+Offizielle Website von Ethomatics.AI. Next.js Applikation mit Tailwind CSS, KI-Readiness-Check und Kontaktformular.
 
-First, run the development server:
+## Lokales Setup
 
 ```bash
+# Dependencies installieren
+npm install
+
+# Umgebungsvariablen konfigurieren
+cp .env.example .env.local
+# .env.local mit echten Werten befüllen
+
+# Dev-Server starten
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Öffne [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Umgebungsvariablen
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Beschreibung |
+|----------|-------------|
+| `NEXT_PUBLIC_CALENDLY_URL` | Calendly-Buchungslink für "Erstgespräch buchen" |
+| `NEXT_PUBLIC_N8N_WEBHOOK_URL` | n8n Webhook für KI-Readiness-Check Ergebnisse |
+| `NEXT_PUBLIC_N8N_CONTACT_WEBHOOK_URL` | n8n Webhook für Kontaktformular |
 
-## Learn More
+## Texte anpassen
 
-To learn more about Next.js, take a look at the following resources:
+Alle Texte, Labels und Beschreibungen befinden sich zentral in:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/config/site.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Hier lassen sich Headlines, Leistungsbeschreibungen, Readiness-Check-Fragen, Team-Infos und rechtliche Texte direkt editieren.
 
-## Deploy on Vercel
+## Platzhalter
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Folgende Platzhalter im Code müssen noch ersetzt werden:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `[CALENDLY-URL]` — Calendly-Link (in `.env.local`)
+- `[N8N-WEBHOOK-URL-READINESS]` — n8n Webhook KI-Check (in `.env.local`)
+- `[N8N-WEBHOOK-URL-KONTAKT]` — n8n Webhook Kontakt (in `.env.local`)
+- `[FOTO-DENNIS]` — Profilfoto unter `public/images/dennis-trocha.jpg`
+- `[FOTO-SASCHA]` — Profilfoto unter `public/images/sascha-schned.jpg`
+- `[FIRMENNAME]`, `[ADRESSE]`, `[HANDELSREGISTER]`, `[UST-ID]` — In `src/config/site.ts` (Impressum/Datenschutz)
+
+## Fotos ersetzen
+
+1. Fotos als JPG unter `public/images/dennis-trocha.jpg` und `public/images/sascha-schned.jpg` ablegen
+2. In `src/components/sections/Team.tsx` die `.svg`-Endung entfernen (Zeile mit `member.image.replace(...)`)
+
+## Deployment (Coolify / Docker)
+
+```bash
+# Docker Image bauen
+docker build -t ethomatics .
+
+# Mit docker-compose starten
+docker compose up -d
+```
+
+In Coolify: Repository verbinden, Dockerfile-Modus auswählen, Umgebungsvariablen setzen.
+
+## Tech Stack
+
+- Next.js 16 (App Router, TypeScript)
+- Tailwind CSS
+- Zod (Formular-Validierung)
+- Docker (Standalone Build)
