@@ -40,7 +40,7 @@ export function Hero() {
             <FadeIn delay={0.1}>
               <div className="inline-flex items-center gap-3 mb-8">
                 <div className="h-px w-10 bg-white/40" />
-                <p className="text-secondary font-semibold text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase">
+                <p className="text-white/60 font-semibold text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase">
                   Built to simplify.
                 </p>
                 <div className="h-px w-10 bg-white/40" />
