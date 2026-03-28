@@ -190,21 +190,17 @@ export function ReadinessCheck() {
 
                     {/* Free text field for multi-select */}
                     <div className="mt-3">
-                      <div className="relative">
-                        <input
-                          type="text"
-                          maxLength={120}
-                          value={freeTexts[currentStep] || ""}
-                          onChange={(e) => setFreeText(currentStep, e.target.value)}
-                          placeholder="Weiterer Bereich (max. 120 Zeichen)"
-                          className="w-full px-4 py-3 rounded-xl border-2 border-secondary/60 bg-white text-sm sm:text-base text-primary/80 placeholder:text-primary/30 focus:border-accent focus:outline-none transition-colors duration-200"
-                        />
-                        {(freeTexts[currentStep] || "").length > 0 && (
-                          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-[11px] text-primary/30 tabular-nums">
-                            {(freeTexts[currentStep] || "").length}/120
-                          </span>
-                        )}
-                      </div>
+                      <input
+                        type="text"
+                        maxLength={120}
+                        value={freeTexts[currentStep] || ""}
+                        onChange={(e) => setFreeText(currentStep, e.target.value)}
+                        placeholder="Weiterer Bereich (max. 120 Zeichen)"
+                        className="w-full px-4 py-3 rounded-xl border-2 border-secondary/60 bg-white text-sm sm:text-base text-primary/80 placeholder:text-primary/30 focus:border-accent focus:outline-none transition-colors duration-200"
+                      />
+                      <p className="text-right text-[11px] text-primary/30 tabular-nums mt-1 mr-1">
+                        {(freeTexts[currentStep] || "").length} / 120 Zeichen
+                      </p>
                     </div>
                   </div>
                 )}
