@@ -13,6 +13,16 @@
 
 html {
   color-scheme: light only;
+  -webkit-text-fill-color: inherit;
+}
+
+/* Prevent iOS/Safari dark mode from overriding colors */
+@media (prefers-color-scheme: dark) {
+  html, body {
+    color-scheme: light only;
+    background-color: var(--color-background) !important;
+    color: var(--color-primary) !important;
+  }
 }
 
 body {
