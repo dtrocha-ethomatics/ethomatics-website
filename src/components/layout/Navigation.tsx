@@ -96,7 +96,7 @@ export function Navigation() {
           </a>
 
           {/* Desktop */}
-          <div className="hidden md:flex items-center gap-7">
+          <div className="hidden lg:flex items-center gap-7">
             {navigation.map((link) => {
               const isActive = activeSection === link.href.replace("/#", "");
               return (
@@ -125,7 +125,7 @@ export function Navigation() {
           {/* Mobile Hamburger */}
           <button
             type="button"
-            className="md:hidden relative z-10 p-2 -mr-2"
+            className="lg:hidden relative z-10 p-2 -mr-2"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
             aria-expanded={mobileOpen}
@@ -155,11 +155,11 @@ export function Navigation() {
       {mobileOpen && (
         <>
           <div
-            className="md:hidden fixed inset-0 z-[55] bg-primary/30 backdrop-blur-sm"
+            className="lg:hidden fixed inset-0 z-[55] bg-primary/30 backdrop-blur-sm"
             onClick={closeMobile}
             aria-hidden="true"
           />
-          <div className="md:hidden fixed inset-x-0 top-16 z-[60] mx-4 rounded-2xl bg-white/95 backdrop-blur-xl shadow-[0_12px_48px_rgba(46,52,64,0.15)] border border-secondary/30 overflow-hidden">
+          <div className="lg:hidden fixed inset-x-0 top-16 z-[60] mx-4 rounded-2xl bg-white/95 backdrop-blur-xl shadow-[0_12px_48px_rgba(46,52,64,0.15)] border border-secondary/30 overflow-hidden">
             <div className="flex flex-col items-center gap-5 py-8 px-6">
               {navigation.map((link) => (
                 <a

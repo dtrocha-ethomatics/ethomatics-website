@@ -286,10 +286,10 @@ export function ReadinessCheck() {
                 {answerSummary.map((item, i) => {
                   const q = readinessQuestions[i];
                   const maxVal = q.multiSelect
-                    ? q.options.length
+                    ? q.options.reduce((s, o) => s + o.value, 0)
                     : Math.max(...q.options.map((o) => o.value));
                   const gotVal = q.multiSelect
-                    ? (multiAnswers[i] || []).length
+                    ? (multiAnswers[i] || []).reduce((s, idx) => s + (q.options[idx]?.value ?? 0), 0)
                     : (answers[i] ?? 0);
                   const pct = maxVal > 0 ? (gotVal / maxVal) * 100 : 0;
                   return (
@@ -311,6 +311,11 @@ export function ReadinessCheck() {
                           style={{ width: `${pct}%` }}
                         />
                       </div>
+                      {freeTexts[i] && (
+                        <p className="mt-1 text-[10px] sm:text-[11px] text-primary/40 italic truncate">
+                          &bdquo;{freeTexts[i]}&ldquo;
+                        </p>
+                      )}
                     </div>
                   );
                 })}

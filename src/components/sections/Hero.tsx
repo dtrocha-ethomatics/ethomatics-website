@@ -40,7 +40,7 @@ export function Hero() {
             <FadeIn delay={0.1}>
               <div className="inline-flex items-center gap-3 mb-8">
                 <div className="h-px w-10 bg-white/40" />
-                <p className="text-white/70 font-semibold text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase">
+                <p className="text-secondary font-semibold text-base sm:text-lg md:text-xl tracking-[0.25em] uppercase">
                   Built to simplify.
                 </p>
                 <div className="h-px w-10 bg-white/40" />
@@ -48,7 +48,7 @@ export function Hero() {
             </FadeIn>
 
             <FadeIn delay={0.3}>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-white mb-8">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] text-accent mb-8">
                 {hero.headline}
               </h1>
             </FadeIn>
@@ -72,7 +72,7 @@ export function Hero() {
               transform: "translateZ(0)",
             }}
           >
-            <p className="text-lg sm:text-2xl md:text-3xl font-bold text-primary leading-snug italic">
+            <p className="text-lg sm:text-2xl md:text-3xl font-bold text-primary/70 leading-snug italic">
               {hero.quote.split("niemand vermisst").map((part, i) =>
                 i === 0 ? (
                   <span key={i}>

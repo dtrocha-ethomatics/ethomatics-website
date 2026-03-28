@@ -94,7 +94,7 @@ function EthosCard({
         <span className="block mb-3.5 font-body text-[11px] font-semibold tracking-[2.5px] uppercase text-[#2C6B70]">
           {label}
         </span>
-        <h3 className="font-heading text-[22px] font-bold text-[#1A2A2A] mb-3.5 leading-[1.3]">
+        <h3 className="font-heading text-[22px] font-bold text-primary/70 mb-3.5 leading-[1.3]">
           {title}
         </h3>
         <p className="font-body text-[15px] leading-[1.7] text-primary/60 m-0">
@@ -185,7 +185,7 @@ export function About() {
           <SectionLabel>{about.mission.label}</SectionLabel>
 
           <FadeIn delay={0.1}>
-            <p className="font-heading text-[clamp(20px,3vw,26px)] leading-[1.6] text-[#1A2A2A] mb-12 font-normal whitespace-pre-line">
+            <p className="font-heading text-[clamp(20px,3vw,26px)] leading-[1.6] text-primary/70 mb-12 font-normal whitespace-pre-line">
               {about.mission.text}
             </p>
           </FadeIn>
@@ -201,7 +201,7 @@ export function About() {
         <div className="max-w-[1440px] mx-auto px-8 py-20 md:py-28">
           <SectionLabel>{about.ethos.label}</SectionLabel>
           <FadeIn delay={0.05}>
-            <p className="font-heading text-[clamp(18px,2.5vw,22px)] text-[#1A2A2A]/70 mb-12 leading-[1.6] text-center">
+            <p className="font-heading text-[clamp(18px,2.5vw,22px)] text-primary/70 mb-12 leading-[1.6] text-center">
               {about.ethos.sublabel}
             </p>
           </FadeIn>
@@ -232,7 +232,7 @@ export function About() {
           <SectionLabel>{about.process.label}</SectionLabel>
 
           <FadeIn delay={0.1}>
-            <p className="font-heading text-[clamp(18px,2.5vw,24px)] leading-[1.65] text-[#1A2A2A] mb-10 font-normal">
+            <p className="font-heading text-[clamp(18px,2.5vw,24px)] leading-[1.65] text-primary/70 mb-10 font-normal">
               {about.process.intro}
             </p>
           </FadeIn>
@@ -251,7 +251,7 @@ export function About() {
           <SectionLabel>{about.impact.label}</SectionLabel>
 
           <FadeIn delay={0.1}>
-            <p className="font-heading text-[clamp(18px,2.5vw,24px)] leading-[1.65] text-[#1A2A2A] mb-9 font-normal">
+            <p className="font-heading text-[clamp(18px,2.5vw,24px)] leading-[1.65] text-primary/70 mb-9 font-normal">
               {about.impact.text}{" "}
               <span className="text-accent font-semibold">
                 {about.impact.highlight}
