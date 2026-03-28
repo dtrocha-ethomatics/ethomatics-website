@@ -17,7 +17,7 @@ export function UnifiedContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
+    companyWebsite: "www.",
     message: "",
     dsgvoConsent: false,
   });
@@ -48,7 +48,7 @@ export function UnifiedContactForm() {
     const payload = {
       name: formData.name,
       email: formData.email,
-      company: formData.company,
+      companyWebsite: formData.companyWebsite,
       message: formData.message,
       dsgvoConsent: formData.dsgvoConsent as true,
       consentText,
@@ -84,7 +84,7 @@ export function UnifiedContactForm() {
 
       setFormState("success");
       sessionStorage.removeItem("ethomatics-quiz-result");
-      setFormData({ name: "", email: "", company: "", message: "", dsgvoConsent: false });
+      setFormData({ name: "", email: "", companyWebsite: "www.", message: "", dsgvoConsent: false });
     } catch {
       setFormState("error");
     }
@@ -140,13 +140,15 @@ export function UnifiedContactForm() {
               error={errors.email}
             />
             <FormField
-              label="Unternehmen"
-              name="company"
+              label="Unternehmens-Webseite"
+              name="companyWebsite"
               required
-              placeholder="Ihr Unternehmen"
-              value={formData.company}
-              onChange={(e) => updateField("company", (e.target as HTMLInputElement).value)}
-              error={errors.company}
+              placeholder="www.ihr-unternehmen.de"
+              onFocus={(e) => { if (e.target.value === "www.") e.target.setSelectionRange(4, 4); }}
+              value={formData.companyWebsite}
+              onChange={(e) => updateField("companyWebsite", (e.target as HTMLInputElement).value)}
+              error={errors.companyWebsite}
+              hint="Wir nutzen diese Angabe zur Vorbereitung unseres Gesprächs."
             />
             <FormField
               as="textarea"
@@ -157,11 +159,14 @@ export function UnifiedContactForm() {
               value={formData.message}
               onChange={(e) => updateField("message", (e.target as HTMLTextAreaElement).value)}
               error={errors.message}
+              maxLength={500}
+              maxChars={500}
+              charCount={formData.message.length}
             />
 
             {/* Honeypot — invisible to users */}
             <div aria-hidden="true" style={{ position: "absolute", opacity: 0, height: 0, overflow: "hidden", pointerEvents: "none" }}>
-              <input type="text" name="website" tabIndex={-1} autoComplete="off" />
+              <input type="text" name="company_url" tabIndex={-1} autoComplete="off" />
             </div>
 
             {/* DSGVO Consent */}

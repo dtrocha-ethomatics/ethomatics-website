@@ -24,7 +24,7 @@ function getDb(): Database.Database {
       mode TEXT NOT NULL CHECK(mode IN ('LEAD', 'KONTAKT')),
       name TEXT NOT NULL,
       email TEXT NOT NULL,
-      company TEXT NOT NULL,
+      company_website TEXT NOT NULL,
       message TEXT NOT NULL,
       quiz_score INTEGER,
       quiz_category TEXT,
@@ -61,7 +61,7 @@ export interface SubmissionRow {
   mode: "LEAD" | "KONTAKT";
   name: string;
   email: string;
-  company: string;
+  company_website: string;
   message: string;
   quiz_score?: number | null;
   quiz_category?: string | null;
@@ -77,12 +77,12 @@ export function insertSubmission(data: SubmissionRow): void {
   const database = getDb();
   const stmt = database.prepare(`
     INSERT INTO submissions (
-      ref_number, mode, name, email, company, message,
+      ref_number, mode, name, email, company_website, message,
       quiz_score, quiz_category, quiz_category_title,
       quiz_detail_answers, quiz_free_texts,
       consent_text, consent_timestamp, ip_address
     ) VALUES (
-      @ref_number, @mode, @name, @email, @company, @message,
+      @ref_number, @mode, @name, @email, @company_website, @message,
       @quiz_score, @quiz_category, @quiz_category_title,
       @quiz_detail_answers, @quiz_free_texts,
       @consent_text, @consent_timestamp, @ip_address

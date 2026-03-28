@@ -58,7 +58,7 @@ export interface Reference {
 export interface ContactFormData {
   name: string;
   email: string;
-  company: string;
+  companyWebsite: string;
   message: string;
   dsgvoConsent: boolean;
 }

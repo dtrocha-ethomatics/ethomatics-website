@@ -9,10 +9,10 @@ export interface QuizData {
 export interface ContactPayload {
   name: string;
   email: string;
-  company: string;
+  companyWebsite: string;
   message: string;
   dsgvoConsent: true;
   consentText: string;
-  website?: string; // honeypot
+  company_url?: string; // honeypot
   quizData?: QuizData;
 }

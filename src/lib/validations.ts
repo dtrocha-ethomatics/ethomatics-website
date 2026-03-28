@@ -22,13 +22,13 @@ export const readinessLeadSchema = z.object({
 export const unifiedContactSchema = z.object({
   name: z.string().min(2, "Bitte geben Sie Ihren Namen ein."),
   email: z.string().email("Bitte geben Sie eine gültige E-Mail-Adresse ein."),
-  company: z.string().min(1, "Bitte geben Sie Ihr Unternehmen ein."),
-  message: z.string().min(10, "Bitte geben Sie eine Nachricht ein (mind. 10 Zeichen)."),
+  companyWebsite: z.string().min(3, "Bitte geben Sie Ihre Unternehmens-Webseite ein."),
+  message: z.string().min(10, "Bitte geben Sie eine Nachricht ein (mind. 10 Zeichen).").max(500, "Die Nachricht darf maximal 500 Zeichen lang sein."),
   dsgvoConsent: z.literal(true, {
     message: "Bitte stimmen Sie der Datenverarbeitung zu.",
   }),
   consentText: z.string(),
-  website: z.string().optional(), // honeypot
+  company_url: z.string().optional(), // honeypot
   quizData: z
     .object({
       score: z.number(),

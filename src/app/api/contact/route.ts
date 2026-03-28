@@ -11,7 +11,7 @@ export async function POST(request: Request) {
   }
 
   // 1. Honeypot check — silent success if filled
-  if (typeof body === "object" && body !== null && "website" in body && (body as Record<string, unknown>).website) {
+  if (typeof body === "object" && body !== null && "company_url" in body && (body as Record<string, unknown>).company_url) {
     return Response.json({ success: true });
   }
 
@@ -55,7 +55,7 @@ export async function POST(request: Request) {
       mode,
       name: data.name,
       email: data.email,
-      company: data.company,
+      company_website: data.companyWebsite,
       message: data.message,
       quiz_score: data.quizData?.score ?? null,
       quiz_category: data.quizData?.category ?? null,
@@ -81,7 +81,7 @@ export async function POST(request: Request) {
       isTest,
       name: data.name,
       email: data.email,
-      company: data.company,
+      company_website: data.companyWebsite,
       message: data.message,
       consent_timestamp: new Date().toISOString(),
       source: mode === "LEAD" ? "ki-readiness-check" : "website-kontaktformular",
