@@ -21,6 +21,9 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV NEXT_TELEMETRY_DISABLED=1
 
+# libstdc++ is required at runtime for better-sqlite3 native addon
+RUN apk add --no-cache libstdc++
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 

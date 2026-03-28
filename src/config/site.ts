@@ -297,7 +297,7 @@ export const readinessCheck = {
   submitLabel: "Ergebnis sichern und Kontakt aufnehmen",
   restartLabel: "Nochmal starten",
   leadSuccessMessage:
-    "Vielen Dank! Sie erhalten Ihr Ergebnis per E-Mail. Wir melden uns in 2–3 Tagen bei Ihnen.",
+    "Vielen Dank!\nWir melden uns in 2–3 Tagen bei Ihnen.",
   leadErrorMessage:
     "Beim Senden ist ein Fehler aufgetreten. Bitte kontaktieren Sie uns direkt unter d.trocha@ethomatics.ai",
 };
@@ -378,7 +378,7 @@ export const kontaktPage = {
   consentTextKontakt:
     "Ich stimme der Verarbeitung meiner Daten zur Kontaktaufnahme zu. Datenschutzhinweise",
   successMessageLead:
-    "Vielen Dank! Sie erhalten Ihr Ergebnis per E-Mail. Wir melden uns in 2–3 Tagen bei Ihnen.",
+    "Vielen Dank!\nWir melden uns in 2–3 Tagen bei Ihnen.",
   successMessageKontakt:
     "Vielen Dank für Ihre Nachricht. Wir melden uns innerhalb von 24 Stunden bei Ihnen.",
   errorMessage:

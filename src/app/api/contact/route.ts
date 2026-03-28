@@ -43,29 +43,38 @@ export async function POST(request: Request) {
   // 5. Test detection
   const isTest = /test/i.test(data.message);
 
-  // 6. DB + Counter (skip for tests)
+  // 6. DB + Counter (skip for tests, graceful fallback if DB unavailable)
   let refNumber: string;
+  let dbOk = false;
+
   if (!isTest) {
     const counterKey = mode === "LEAD" ? "lead" : "kontakt";
     const count = incrementCounter(counterKey);
-    refNumber = `${mode}-${String(count).padStart(6, "0")}`;
 
-    insertSubmission({
-      ref_number: refNumber,
-      mode,
-      name: data.name,
-      email: data.email,
-      company_website: data.companyWebsite,
-      message: data.message,
-      quiz_score: data.quizData?.score ?? null,
-      quiz_category: data.quizData?.category ?? null,
-      quiz_category_title: data.quizData?.categoryTitle ?? null,
-      quiz_detail_answers: data.quizData?.detailAnswers ? JSON.stringify(data.quizData.detailAnswers) : null,
-      quiz_free_texts: data.quizData?.freeTexts ? JSON.stringify(data.quizData.freeTexts) : null,
-      consent_text: data.consentText,
-      consent_timestamp: new Date().toISOString(),
-      ip_address: ip,
-    });
+    if (count !== null) {
+      refNumber = `${mode}-${String(count).padStart(6, "0")}`;
+
+      dbOk = insertSubmission({
+        ref_number: refNumber,
+        mode,
+        name: data.name,
+        email: data.email,
+        company_website: data.companyWebsite,
+        message: data.message,
+        quiz_score: data.quizData?.score ?? null,
+        quiz_category: data.quizData?.category ?? null,
+        quiz_category_title: data.quizData?.categoryTitle ?? null,
+        quiz_detail_answers: data.quizData?.detailAnswers ? JSON.stringify(data.quizData.detailAnswers) : null,
+        quiz_free_texts: data.quizData?.freeTexts ? JSON.stringify(data.quizData.freeTexts) : null,
+        consent_text: data.consentText,
+        consent_timestamp: new Date().toISOString(),
+        ip_address: ip,
+      });
+    } else {
+      // DB unavailable — generate timestamp-based ref
+      refNumber = `${mode}-${Date.now()}`;
+      console.warn("[contact-api] DB unavailable, using fallback ref:", refNumber);
+    }
   } else {
     refNumber = `[TEST]-${mode}`;
   }
@@ -79,6 +88,7 @@ export async function POST(request: Request) {
     const webhookPayload: Record<string, unknown> = {
       ref_number: refNumber,
       isTest,
+      db_saved: dbOk,
       name: data.name,
       email: data.email,
       company_website: data.companyWebsite,
@@ -103,11 +113,12 @@ export async function POST(request: Request) {
         body: JSON.stringify(webhookPayload),
       });
     } catch (err) {
-      // Log but don't fail — data is already in DB
       console.error("[contact-api] Webhook error:", err);
     }
+  } else {
+    console.warn("[contact-api] No webhook URL configured for mode:", mode);
   }
 
-  // 8. Success
+  // 8. Success — even if DB failed, webhook was attempted
   return Response.json({ success: true, ref: refNumber });
 }

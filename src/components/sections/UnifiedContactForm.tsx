@@ -114,7 +114,7 @@ export function UnifiedContactForm() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <p className="text-base text-primary">
+            <p className="text-base text-primary whitespace-pre-line">
               {isLeadMode ? kontaktPage.successMessageLead : kontaktPage.successMessageKontakt}
             </p>
           </div>
@@ -224,15 +224,6 @@ export function UnifiedContactForm() {
           </form>
         )}
 
-        {/* Fallback contact */}
-        <div className="text-center mt-8">
-          <p className="text-sm text-primary/40">
-            Oder schreiben Sie uns direkt:{" "}
-            <a href="mailto:d.trocha@ethomatics.ai" className="text-accent hover:underline">
-              d.trocha@ethomatics.ai
-            </a>
-          </p>
-        </div>
       </div>
     </section>
   );
