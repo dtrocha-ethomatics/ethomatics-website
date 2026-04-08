@@ -574,6 +574,11 @@ Friedrichstr. 33
 Telefon: +49 (0) 176 244 920 25
 E-Mail: d.trocha@ethomatics.ai
 
+## Umsatzsteuer-ID
+
+Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
+DE461279866
+
 ## Verantwortlich für redaktionelle Inhalte
 
 Dennis Trocha
